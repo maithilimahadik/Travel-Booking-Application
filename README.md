@@ -1,4 +1,22 @@
-Instructions to setup the project locally
+**Travel Booking Application**
+A simple travel booking web application built using Python Django that allows users to:
+View available travel options, Book tickets, Manage their bookings with profile management
+
+Features
+- User registration, login, logout, profile update
+- Travel options listing with filters (type, source, destination, date, price range)
+- Booking system with seat availability updates
+- View current and past bookings
+- Cancel bookings
+- Responsive UI with Bootstrap
+- MySQL database integration
+
+Tech Stack
+- Backend: Python, Django
+- Frontend: Django Templates, HTML, CSS, Bootstrap
+- Database: MySQL
+
+**Instructions to setup the project locally**
 
 1. Clone the Repository
 git clone https://github.com/yourusername/travel_booking.git
