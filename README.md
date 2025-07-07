@@ -33,8 +33,8 @@ Mac/Linux: source venv/bin/activate
 pip install -r requirements.txt
 
 4. Configure Database Using MySQL
-1. Install MySQL server locally and create a database travel_db.
-2. Update DATABASES config in settings.py with your MySQL username and password as given below:
+a. Install MySQL server locally and create a database travel_db.
+b. Update DATABASES config in settings.py with your MySQL username and password as given below:
 
 DATABASES = {
     'default': {
@@ -46,7 +46,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
-3. Run migrations:
+c. Run migrations:
 python manage.py makemigrations
 python manage.py migrate
 
@@ -61,7 +61,6 @@ python manage.py collectstatic
 python manage.py runserver
 Visit:
 http://127.0.0.1:8000/
-
 The app should then load locally.
 
 8. To access the Admin Panel
