@@ -1,0 +1,73 @@
+{% extends 'bookingapp/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.my-bookings-container {
+    margin-top: 30px;
+}
+.table thead {
+    background-color: #007bff;
+    color: white;
+}
+.btn-cancel {
+    background-color: #dc3545;
+    border: none;
+}
+.btn-cancel:hover {
+    background-color: #c82333;
+}
+.status-confirmed {
+    color: green;
+    font-weight: bold;
+}
+.status-cancelled {
+    color: red;
+    font-weight: bold;
+}
+</style>
+
+<div class="container my-bookings-container">
+  <h2 class="text-center mb-4">My Bookings</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Travel Option</th>
+          <th>Number of Seats</th>
+          <th>Total Price</th>
+          <th>Booking Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for booking in bookings %}
+        <tr>
+          <td>{{ booking.travel_option }}</td>
+          <td>{{ booking.number_of_seats }}</td>
+          <td>{{ booking.total_price }}</td>
+          <td>{{ booking.booking_date }}</td>
+          <td class="{% if booking.status == 'Confirmed' %}status-confirmed{% else %}status-cancelled{% endif %}">
+            {{ booking.status }}
+          </td>
+          <td>
+            {% if booking.status == 'Confirmed' %}
+            <a href="{% url 'cancel_booking' booking.id %}" class="btn btn-cancel btn-sm">
+              <i class="bi bi-x-circle"></i> Cancel
+            </a>
+            {% else %}
+            <span class="text-muted">N/A</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="6" class="text-center">No bookings found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

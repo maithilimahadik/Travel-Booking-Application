@@ -1,0 +1,51 @@
+{% extends 'bookingapp/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.register-container {
+    margin-top: 50px;
+}
+.register-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.register-card-header {
+    background: linear-gradient(45deg, #28a745, #42e695);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 15px 0;
+}
+.btn-register {
+    background-color: #28a745;
+    border: none;
+}
+.btn-register:hover {
+    background-color: #1e7e34;
+}
+</style>
+
+<div class="container register-container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card register-card">
+        <div class="register-card-header">
+          Register
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-register btn-block">Register</button>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

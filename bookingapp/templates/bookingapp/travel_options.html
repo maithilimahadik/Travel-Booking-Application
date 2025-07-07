@@ -1,0 +1,108 @@
+{% extends 'bookingapp/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.travel-options-container {
+    margin-top: 30px;
+}
+.filter-form {
+    background: linear-gradient(45deg, #007bff, #00c6ff);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+.filter-form input,
+.filter-form select {
+    margin-bottom: 10px;
+}
+.table-container {
+    margin-top: 30px;
+}
+.table thead {
+    background-color: #007bff;
+    color: white;
+}
+.btn-book {
+    background-color: #28a745;
+    border: none;
+}
+.btn-book:hover {
+    background-color: #1e7e34;
+}
+</style>
+
+<div class="container travel-options-container">
+  <h2 class="text-center mb-4">Available Travel Options</h2>
+
+  <div class="filter-form">
+    <form method="GET" class="form-row">
+      <div class="form-group col-md-2">
+        <select name="type" class="form-control">
+          <option value="">All Types</option>
+          <option value="Flight">Flight</option>
+          <option value="Train">Train</option>
+          <option value="Bus">Bus</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <input type="text" name="source" placeholder="Source" class="form-control">
+      </div>
+      <div class="form-group col-md-2">
+        <input type="text" name="destination" placeholder="Destination" class="form-control">
+      </div>
+      <div class="form-group col-md-2">
+        <input type="date" name="date" class="form-control">
+      </div>
+      <div class="form-group col-md-2">
+        <input type="number" name="price_min" placeholder="Min Price" class="form-control">
+      </div>
+      <div class="form-group col-md-2">
+        <input type="number" name="price_max" placeholder="Max Price" class="form-control">
+      </div>
+      <div class="form-group col-md-12 text-center">
+        <button type="submit" class="btn btn-light mr-2">Filter</button>
+        <a href="{% url 'travel_options' %}" class="btn btn-secondary">Reset</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Date & Time</th>
+            <th>Price</th>
+            <th>Available Seats</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for option in options %}
+          <tr>
+            <td>{{ option.type }}</td>
+            <td>{{ option.source }}</td>
+            <td>{{ option.destination }}</td>
+            <td>{{ option.datetime }}</td>
+            <td>{{ option.price }}</td>
+            <td>{{ option.available_seats }}</td>
+            <td>
+              <a href="{% url 'book_travel' option.id %}" class="btn btn-book btn-sm">
+                <i class="bi bi-ticket-perforated"></i> Book
+              </a>
+            </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="7" class="text-center">No travel options found.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

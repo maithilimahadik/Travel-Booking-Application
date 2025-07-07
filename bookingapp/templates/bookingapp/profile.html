@@ -1,0 +1,54 @@
+{% extends 'bookingapp/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.profile-container {
+    margin-top: 50px;
+}
+.profile-card {
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.profile-card-header {
+    background: linear-gradient(45deg, #6f42c1, #b98eff);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 15px 0;
+}
+.btn-update {
+    background-color: #6f42c1;
+    border: none;
+}
+.btn-update:hover {
+    background-color: #5936a8;
+}
+</style>
+
+<div class="container profile-container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card profile-card">
+        <div class="profile-card-header">
+          Profile
+        </div>
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label><strong>Username:</strong> {{ user.username }}</label>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control" value="{{ user.email }}" required>
+            </div>
+            <button type="submit" class="btn btn-update btn-block">Update Profile</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
