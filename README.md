@@ -1,8 +1,8 @@
 **Travel Booking Application**
-\nA simple travel booking web application built using Python Django that allows users to:
+A simple travel booking web application built using Python Django that allows users to:
 View available travel options, Book tickets, Manage their bookings with profile management
 
-Features\n
+Features
 - User registration, login, logout, profile update
 - Travel options listing with filters (type, source, destination, date, price range)
 - Booking system with seat availability updates
